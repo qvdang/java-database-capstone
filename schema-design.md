@@ -154,14 +154,14 @@ db.createCollection("feedbacks", {
   "patientName": "John Smith",
   "appointmentId": 51,
   "doctorName": "Vincent Rentz",
-  "checkinTime: Timestamp(),
+  "checkinTime": Timestamp()
 }
 
 db.createCollection("logs", {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ["patientName", "appointmentId", "doctorName", "checkinTime"],
+      required: ["patientName", "appointmentId", "doctorName", "checkinTime"]
     }
   },
   validationAction: "error"  // reject invalid documents entirely
@@ -176,8 +176,8 @@ db.createCollection("logs", {
   "appointmentId": 51,
   "doctorName": "Vincent Rentz",
   [
-    {"fromPatient": "text msg to the doctor", timestamp: Timestamp()},
-    {"fromDoctor: : "text msg to the patient", timestamp: Timestamp()},
+    {"fromPatient": "text msg to the doctor", "timestamp": Timestamp()},
+    {"fromDoctor" : "text msg to the patient", "timestamp": Timestamp()},
     ......
   ]
 }
