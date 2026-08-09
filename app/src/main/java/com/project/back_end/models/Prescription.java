@@ -1,8 +1,82 @@
 package com.project.back_end.models;
 
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collation = "prescriptions")
 public class Prescription {
 
-  // @Document annotation:
+    @Id
+    private String _id;
+
+    @NotNull
+    @Size(min = 3, max = 100)
+    private String patientName;
+
+    @NotNull
+    private Long appointmentId;
+
+    @NotNull
+    @Size(min = 3, max = 100)
+    private String medication;
+
+    @NotNull
+    private String dosage;
+
+    @Size(max = 200)
+    private String doctorNotes;
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
+
+    public Long getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(Long appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
+    public String getMedication() {
+        return medication;
+    }
+
+    public void setMedication(String medication) {
+        this.medication = medication;
+    }
+
+    public String getDosage() {
+        return dosage;
+    }
+
+    public void setDosage(String dosage) {
+        this.dosage = dosage;
+    }
+
+    public String getDoctorNotes() {
+        return doctorNotes;
+    }
+
+    public void setDoctorNotes(String doctorNotes) {
+        this.doctorNotes = doctorNotes;
+    }
+
+    // @Document annotation:
 //    - Marks the class as a MongoDB document (a collection in MongoDB).
 //    - The collection name is specified as "prescriptions" to map this class to the "prescriptions" collection in MongoDB.
 
