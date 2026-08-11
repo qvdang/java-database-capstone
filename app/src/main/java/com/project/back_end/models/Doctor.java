@@ -139,8 +139,8 @@ public class Doctor {
         return clinic;
     }
 
-    public void setClinic(Clinic clinic) {
-        this.clinic = clinic;
+    public void setClinic(Set<Clinic> clinics) {
+        this.clinics = clinics;
     }
 
     public DoctorAvailability getDoctorAvailability() {
