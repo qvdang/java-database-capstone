@@ -135,8 +135,8 @@ public class Doctor {
         this.phone = phone;
     }
 
-    public Clinic getClinic() {
-        return clinic;
+    public Set<Clinic> getClinic() {
+        return clinics;
     }
 
     public void setClinic(Set<Clinic> clinics) {
