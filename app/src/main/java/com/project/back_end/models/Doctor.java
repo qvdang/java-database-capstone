@@ -53,7 +53,7 @@ public class Doctor {
     private Set<Clinic> clinics;
 
     @OneToMany
-    private DoctorAvailability doctorAvailability;
+    private Set<DoctorAvailability> doctorAvailability;
 
     public Long getId() {
         return id;
@@ -143,11 +143,11 @@ public class Doctor {
         this.clinics = clinics;
     }
 
-    public DoctorAvailability getDoctorAvailability() {
+    public Set<DoctorAvailability> getDoctorAvailability() {
         return doctorAvailability;
     }
 
-    public void setDoctorAvailability(DoctorAvailability doctorAvailability) {
+    public void setDoctorAvailability(Set<DoctorAvailability> doctorAvailability) {
         this.doctorAvailability = doctorAvailability;
     }
 
