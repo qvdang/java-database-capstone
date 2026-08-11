@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Doctor {
@@ -17,12 +17,23 @@ public class Doctor {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 100)
-    private String name;
+    @Size(max = 20)
+    private String firstName;
+
+    @Size(max = 10)
+    private String middleName;
+
+    @NotNull
+    @Size(max = 20)
+    private String lastName;
+
+    private String gender;
 
     @NotNull
     @Size(min = 3, max = 50)
     private String specialty;
+
+    private Integer yearsOfExperience;
 
     @NotNull
     @Email
@@ -37,8 +48,12 @@ public class Doctor {
     @Pattern(regexp = "^[0-9]{10}$")
     private String phone;
 
-    @ElementCollection
-    private List<String> availableTimes;
+    @OneToMany
+    @JoinColumn(name = "doctor_id")
+    private Set<Clinic> clinics;
+
+    @OneToMany
+    private DoctorAvailability doctorAvailability;
 
     public Long getId() {
         return id;
@@ -48,12 +63,36 @@ public class Doctor {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getSpecialty() {
@@ -62,6 +101,14 @@ public class Doctor {
 
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
+    }
+
+    public Integer getYearsOfExperience() {
+        return yearsOfExperience;
+    }
+
+    public void setYearsOfExperience(Integer yearsOfExperience) {
+        this.yearsOfExperience = yearsOfExperience;
     }
 
     public String getEmail() {
@@ -88,12 +135,20 @@ public class Doctor {
         this.phone = phone;
     }
 
-    public List<String> getAvailableTimes() {
-        return availableTimes;
+    public Clinic getClinic() {
+        return clinic;
     }
 
-    public void setAvailableTimes(List<String> availableTimes) {
-        this.availableTimes = availableTimes;
+    public void setClinic(Clinic clinic) {
+        this.clinic = clinic;
+    }
+
+    public DoctorAvailability getDoctorAvailability() {
+        return doctorAvailability;
+    }
+
+    public void setDoctorAvailability(DoctorAvailability doctorAvailability) {
+        this.doctorAvailability = doctorAvailability;
     }
 
     // @Entity annotation:

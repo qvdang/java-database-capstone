@@ -3,6 +3,7 @@
 ### Table admin:
 - id: INT, Primary Key, Auto Increment
 - email: VARCHAR(30), UNIQUE, NOT NULL
+- username: VARCHAR(20), NOT NULL, UNIQUE
 - password: VARCHAR(20), NOT NULL
 - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
@@ -16,7 +17,7 @@
 - middle_name: VARCHAR(10)
 - last_name: VARCHAR(20), NOT NULL
 - gender: VARCHAR(6) ('Male', 'Female', 'Unknown')
-- address: VARCHAR(50)
+- address: VARCHAR(255)
 - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 
@@ -27,8 +28,8 @@
 - first_name: VARCHAR(20), NOT NULL
 - middle_name: VARCHAR(10)
 - last_name: VARCHAR(20), NOT NULL
-- gender: VARCHAR(6) ('Male', 'Female', 'Unknown')
-- specialty: VARCHAR(20), NOT NULL
+- gender: VARCHAR(7) ('Male', 'Female', 'Unknown')
+- specialty: VARCHAR(50), NOT NULL
 <!-- Short description of doctor's specialty & background -->
 - bio: VARCHAR(200)
 - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -55,7 +56,7 @@
 ### Table clinics:
 - id : INT, Primary Key, Auto Increment
 - name: VARCHAR(30)
-- address: VARCHAR(50)
+- address: VARCHAR(255)
 - phone: VARCHAR(30)
 - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 

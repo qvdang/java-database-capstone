@@ -1,6 +1,8 @@
 package com.project.back_end.models;
 
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -24,6 +26,9 @@ public class Prescription {
 
     @NotNull
     private String dosage;
+
+    @Min(0) @Max(5)
+    private Integer refillCount;
 
     @Size(max = 200)
     private String doctorNotes;
@@ -66,6 +71,14 @@ public class Prescription {
 
     public void setDosage(String dosage) {
         this.dosage = dosage;
+    }
+
+    public Integer getRefillCount() {
+        return refillCount;
+    }
+
+    public void setRefillCount(Integer refillCount) {
+        this.refillCount = refillCount;
     }
 
     public String getDoctorNotes() {

@@ -1,13 +1,13 @@
 package com.project.back_end.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
+import java.time.LocalDate;
 
 @Entity
 public class Patient {
@@ -17,8 +17,23 @@ public class Patient {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 100)
-    private String name;
+    @Size(max = 20)
+    private String firstName;
+
+    @Size(max = 10)
+    private String middleName;
+
+    @Size(max = 20)
+    private String lastName;
+
+    private String gender;
+
+    @Past
+    private LocalDate birthDate;
+
+    private String emergencyContactName;
+
+    private String emergencyContactPhone;
 
     @NotNull
     @Email
@@ -26,11 +41,16 @@ public class Patient {
 
     @NotNull
     @Size(min = 6)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @NotNull
     @Pattern(regexp = "^[0-9]{10}$")
-    private String phone;
+    private String homePhone;
+
+    @NotNull
+    @Pattern(regexp = "^[0-9]{10}$")
+    private String cellPhone;
 
     @NotNull
     @Size(max = 255)
@@ -44,12 +64,60 @@ public class Patient {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getEmergencyContactName() {
+        return emergencyContactName;
+    }
+
+    public void setEmergencyContactName(String emergencyContactName) {
+        this.emergencyContactName = emergencyContactName;
+    }
+
+    public String getEmergencyContactPhone() {
+        return emergencyContactPhone;
+    }
+
+    public void setEmergencyContactPhone(String emergencyContactPhone) {
+        this.emergencyContactPhone = emergencyContactPhone;
     }
 
     public String getEmail() {
@@ -68,12 +136,20 @@ public class Patient {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getHomePhone() {
+        return homePhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
+
+    public String getCellPhone() {
+        return cellPhone;
+    }
+
+    public void setCellPhone(String cellPhone) {
+        this.cellPhone = cellPhone;
     }
 
     public String getAddress() {

@@ -1,10 +1,7 @@
 package com.project.back_end.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,6 +24,9 @@ public class Appointment {
 
     @Future(message = "Appointment time must be in the future")
     private LocalDateTime appointmentTime;
+
+    @Size(max = 255)
+    private String visitReason;
 
     @NotNull
     @Min(0) @Max(2)
@@ -63,6 +63,14 @@ public class Appointment {
 
     public void setAppointmentTime(LocalDateTime appointmentTime) {
         this.appointmentTime = appointmentTime;
+    }
+
+    public String getVisitReason() {
+        return visitReason;
+    }
+
+    public void setVisitReason(String visitReason) {
+        this.visitReason = visitReason;
     }
 
     public int getStatus() {
