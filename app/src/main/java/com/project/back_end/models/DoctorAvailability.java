@@ -1,8 +1,12 @@
 package com.project.back_end.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 @Entity
@@ -13,12 +17,12 @@ public class DoctorAvailability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Doctor doctor;
+    @Column(name = "day_of_week", columnDefinition = "tinyint check (day_of_week between 1 and 7)")
+    private Integer dayOfWeek;
 
-    private DayOfWeek dayOfWeek;
+    @Column(name = "begin_at", columnDefinition = "time(0)")
+    private LocalTime beginAt;
 
-    private LocalTime startTime;
-
-    private LocalTime endTime;
+    @Column(name = "end_at", columnDefinition = "time(0)")
+    private LocalTime endAt;
 }

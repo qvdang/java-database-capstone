@@ -9,6 +9,8 @@ import jakarta.validation.constraints.Size;
 
 import java.util.Set;
 
+// Doctor to Clinic: many-to-many relationship.
+// Doctor is the owning side.
 @Entity
 public class Doctor {
 
@@ -17,16 +19,10 @@ public class Doctor {
     private Long id;
 
     @NotNull
-    @Size(max = 20)
-    private String firstName;
+    @Size(max = 50)
+    private String name;
 
-    @Size(max = 10)
-    private String middleName;
-
-    @NotNull
-    @Size(max = 20)
-    private String lastName;
-
+    @Size(min = 4, max =10)
     private String gender;
 
     @NotNull
@@ -35,25 +31,44 @@ public class Doctor {
 
     private Integer yearsOfExperience;
 
+    @Size(max = 30)
     @NotNull
     @Email
     private String email;
 
     @NotNull
-    @Size(min = 6)
+    @Size(max = 64)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    @Size(max = 15)
     @NotNull
     @Pattern(regexp = "^[0-9]{10}$")
     private String phone;
 
-    @OneToMany
-    @JoinColumn(name = "doctor_id")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "doctor_clinics",
+            joinColumns = @JoinColumn(name = "doctor_id"),
+            inverseJoinColumns = @JoinColumn(name = "clinic_id")
+    )
     private Set<Clinic> clinics;
 
-    @OneToMany
-    private Set<DoctorAvailability> doctorAvailability;
+    // Undirectional one-to-many
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinColumn(table = "doctor_doctor_available_times")//, name = "doctor_id", referencedColumnName = "id")
+    private Set<DoctorAvailability> doctorAvailableTimes;
+
+    // Helper methods to keep both sides of the relationship synchronized
+    public void addClinic(Clinic clinic) {
+        this.clinics.add(clinic);
+        clinic.getDoctors().add(this);
+    }
+
+    public void removeClinic(Clinic clinic) {
+        this.clinics.remove(clinic);
+        clinic.getDoctors().remove(this);
+    }
 
     public Long getId() {
         return id;
@@ -63,28 +78,12 @@ public class Doctor {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getGender() {
@@ -135,20 +134,20 @@ public class Doctor {
         this.phone = phone;
     }
 
-    public Set<Clinic> getClinic() {
+    public Set<Clinic> getClinics() {
         return clinics;
     }
 
-    public void setClinic(Set<Clinic> clinics) {
+    public void setClinics(Set<Clinic> clinics) {
         this.clinics = clinics;
     }
 
-    public Set<DoctorAvailability> getDoctorAvailability() {
-        return doctorAvailability;
+    public Set<DoctorAvailability> getDoctorAvailableTimes() {
+        return doctorAvailableTimes;
     }
 
-    public void setDoctorAvailability(Set<DoctorAvailability> doctorAvailability) {
-        this.doctorAvailability = doctorAvailability;
+    public void setDoctorAvailableTimes(Set<DoctorAvailability> doctorAvailableTimes) {
+        this.doctorAvailableTimes = doctorAvailableTimes;
     }
 
     // @Entity annotation:

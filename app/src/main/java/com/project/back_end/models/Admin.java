@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Admin {
@@ -15,13 +16,16 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Size(max = 30)
     @NotNull
     @Email
     private String email;
 
+    @Size(max = 20)
     @NotNull(message = "username cannot be null")
     private String username;
 
+    @Size(max = 64)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull(message = "password cannot be null")
     private String password;

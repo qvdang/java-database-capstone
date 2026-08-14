@@ -17,15 +17,10 @@ public class Patient {
     private Long id;
 
     @NotNull
-    @Size(max = 20)
-    private String firstName;
+    @Size(max = 50)
+    private String name;
 
-    @Size(max = 10)
-    private String middleName;
-
-    @Size(max = 20)
-    private String lastName;
-
+    @Size(min = 4, max =10)
     private String gender;
 
     @Past
@@ -35,19 +30,21 @@ public class Patient {
 
     private String emergencyContactPhone;
 
+    @Size(max = 30)
     @NotNull
     @Email
     private String email;
 
     @NotNull
-    @Size(min = 6)
+    @Size(max = 64)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @NotNull
+    @Size(max = 15)
     @Pattern(regexp = "^[0-9]{10}$")
     private String homePhone;
 
+    @Size(max = 15)
     @NotNull
     @Pattern(regexp = "^[0-9]{10}$")
     private String cellPhone;
@@ -64,28 +61,12 @@ public class Patient {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getGender() {
