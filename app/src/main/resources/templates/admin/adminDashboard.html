@@ -1,4 +1,42 @@
 <!-- adminDashboard.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />
+    <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <script th:src="@{/js/render.js}" defer></script>
+    <script th:src="@{/js/util.js}" defer></script>
+    <script th:src="@{/js/components/header.js}" defer></script>
+    <script th:src="@{/js/components/footer.js}" defer></script>
+</head>
+<body>
+<div class="container">
+    <div class="wrapper">
+        <div id="header">
+            <main class="main-content">
+                <input type="text" id="searchBar" placeholder="search by doctor name"/>
+                <select name="doctors" id="doctors">
+                    <option>Sorting by time</option>
+                    <option>Filtering by specialty</option>
+                </select>
+                <div id="content"></div>
+            </main>
+        </div>
+        <div id="footer"></div>
+    </div>
+</div>
+<div id="modal" class="modal">
+    <span id="closeModal" class="close">&times;</span>
+    <div id="modal-body"></div>
+</div>
+<script type="module" src="../../static/js/adminDashboard.js" defer></script>
+<script type="module" src="../../static/js/components/doctorCard.js" defer></script>
+</body>
+</html>
+
 
 <!-- 
 Step-by-Step Explanation of `adminDashboard.html`

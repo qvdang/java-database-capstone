@@ -1,5 +1,66 @@
 /* this is the style sheet file for index.htlm  */
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body html {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 48px;
+    margin-bottom: 50px;
+    color: #003e3e;
+    font-weight: bold;
+    font-family: 'Alegreya', 'Roboto', sans-serif;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url("https://20ea6453-5aab-48ab-b515-f115925c274b.mdnplay.dev/shared-assets/images/examples/lizard.png")
+                    center / cover no-repeat fixed;
+    min-height: 100vh;
+}
+
+/* Default button */
+button {
+    text-align: center;
+    background: #015c5d;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    width: 200px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #A62B1F;
+}
+
+.dashboard-btn {
+    background: #015c5d;
+}
+
+.dashboard-btn:hover {
+    /* background: #003e3e;*/
+    /* background: white; */
+    background: yellow;
+}
+
 /* 
 **Global Reset (`*`)**
 
